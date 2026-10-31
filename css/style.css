@@ -1,74 +1,331 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap");
+
+:root {
+    --ink: #0b2a33;
+    --ink-soft: #174450;
+    --amber: #f7a823;
+    --paper: #f8f4ec;
+    --white: #ffffff;
+    --mist: #c9d8db;
+    --display: "Bricolage Grotesque", "Arial Black", Arial, sans-serif;
+    --gutter: clamp(16px, 4vw, 40px);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    color: var(--ink);
+    background-color: var(--paper);
+    line-height: 1.5;
+}
+
+h1,
+h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 3px;
+}
+
+/* Header */
 header {
-    background-color: blue
+    background-color: var(--ink);
 }
 
 .heading-wrap {
-    /* background-color: #333; */
-    color: white;
+    color: var(--white);
     display: flex;
     justify-content: space-between;
-    width: 1200px;
-    height: 55px;
+    align-items: center;
+    max-width: 1200px;
+    min-height: 64px;
     margin: 0 auto;
-    padding: 10px 0;
-    /* padding: 100px; */
+    padding: 0 var(--gutter);
+}
+
+.brand,
+.heading-wrap h1 {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
 }
 
 header a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    line-height: 35px;
-    padding: 0 20px;
 }
 
-section.hero {
-    padding: 0;
-    /* background-color: #333; */
+nav {
+    display: flex;
+    gap: clamp(4px, 2vw, 16px);
 }
 
-.hero img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
+nav a {
+    display: block;
+    padding: 10px 10px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+    border-bottom-color: var(--amber);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 26px;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: var(--amber);
+    color: var(--ink);
+}
+
+.btn-primary:hover {
+    background-color: #ffbd4a;
+}
+
+.btn-ghost {
+    border-color: var(--mist);
+    color: var(--white);
+}
+
+.btn-ghost:hover {
+    background-color: var(--ink-soft);
+}
+
+.btn-dark {
+    background-color: var(--ink);
+    color: var(--white);
+}
+
+.btn-dark:hover {
+    background-color: var(--ink-soft);
 }
 
 section {
     padding: 50px 0;
 }
 
-.our-partners {
-    width: 1200px;
-    /* background-color: #773333; */
+/* Hero */
+section.hero {
+    padding: 0;
+    background-color: var(--ink);
+    color: var(--white);
+    overflow: hidden;
+}
+
+.hero-inner {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: clamp(32px, 5vw, 72px);
+    max-width: 1200px;
     margin: 0 auto;
+    padding: clamp(40px, 6vw, 72px) var(--gutter);
+}
+
+.hero h1 {
+    font-size: clamp(2.75rem, 7vw, 5.75rem);
+}
+
+.hero h1 em {
+    display: block;
+    font-style: normal;
+    color: var(--amber);
+}
+
+.hero p {
+    max-width: 30em;
+    margin-top: 24px;
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+    color: var(--mist);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+/* The photo sits in a house-shaped window with the photo's own amber glow behind it */
+.hero-visual {
+    position: relative;
+    max-width: 520px;
+    width: 100%;
+    justify-self: end;
+}
+
+.hero-visual::before {
+    content: "";
+    position: absolute;
+    inset: 8%;
+    background-color: var(--amber);
+    filter: blur(70px);
+    opacity: 0.55;
+}
+
+.hero-visual img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1.05;
+    object-fit: cover;
+    object-position: 68% center;
+    clip-path: polygon(50% 0, 100% 30%, 100% 100%, 0 100%, 0 30%);
+}
+
+/* Partners */
+section.our-partners {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--gutter) clamp(56px, 8vw, 96px);
 }
 
 .our-partners h2 {
+    margin-top: 40px;
+    margin-bottom: 24px;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
     text-align: center;
 }
 
 .partners-logo {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(12px, 2vw, 24px);
+}
+
+.partner {
     display: flex;
-    justify-content: space-between;
-    /* padding: 20px 0; */
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    padding: 12%;
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(11, 42, 51, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-section.our-partners img {
-    width: 200px;
-    height: 200px;
+.partner:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(11, 42, 51, 0.18);
+}
+
+.partner img {
+    display: block;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    /* background-color: pink; */
 }
 
+/* starz.png has wide empty margins and sits off-centre, so enlarge it to match the others */
+.partner .logo-starz {
+    transform: scale(1.55) translate(4%, 1%);
+}
+
+/* Closing call to action */
+section.cta {
+    padding: 0;
+    background-color: var(--amber);
+}
+
+.cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(40px, 6vw, 64px) var(--gutter);
+}
+
+.cta h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+footer {
+    padding: 24px var(--gutter);
+    background-color: var(--ink);
+    color: var(--mist);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* Hero stacks and logos go two-across on small screens */
+@media (max-width: 800px) {
+    .hero-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        justify-self: center;
+        max-width: 420px;
+    }
+
+    .partners-logo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .partner {
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-actions .btn,
+    .cta .btn {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .btn,
+    .partner {
+        transition: none;
+    }
+
+    .btn:hover,
+    .partner:hover {
+        transform: none;
+    }
+}
 
 /* Contact Form Styles */
 .form-wrap {
@@ -97,7 +354,7 @@ section.our-partners img {
 }
 
 .form-wrap button {
-    background-color: blue;
+    background-color: var(--ink);
     color: white;
     padding: 10px 20px;
     border: none;
@@ -106,5 +363,5 @@ section.our-partners img {
 }
 
 .form-wrap button:hover {
-    background-color: darkblue;
+    background-color: var(--ink-soft);
 }
